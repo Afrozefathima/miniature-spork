@@ -1,8 +1,7 @@
 import React from 'react'
 import CartDetails from './CartDetails'
-import { Metadata } from 'next'
 
-export const metaData: Metadata = {
+export const metaData = {
   title: 'Shopping Cart',
 }
 
