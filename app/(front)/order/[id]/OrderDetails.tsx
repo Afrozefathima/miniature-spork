@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
 import useSWR from 'swr'
+import Script from 'next/script'
 
 export default function OrderDetails({
   orderId,
@@ -63,11 +64,9 @@ export default function OrderDetails({
 
   return (
     <div>
-      <Head>
-        <script
-          src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&merchant-id=${process.env.MERCHANT_ID}`}
-        ></script>
-      </Head>
+      <Script
+        src={`https://www.paypal.com/sdk/js?client-id=${process.env.PAYPAL_CLIENT_ID}&merchant-id=${process.env.MERCHANT_ID}`}
+      ></Script>
       <h1 className="text-2xl py-4">Order {orderId}</h1>
       <div className="grid md:grid-cols-4 md:gap-5 my-4">
         <div className="md:col-span-3">
