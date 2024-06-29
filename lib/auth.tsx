@@ -1,24 +1,24 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
+import bcrypt from 'bcryptjs'
 import dbConnect from './dbConnect'
 import UserModel from './models/UserModel'
-import bcrypt from 'bcryptjs'
-import NextAuth from 'next-auth/next'
+import NextAuth from 'next-auth'
+
 export const config = {
   providers: [
-    //it has option like github providers, google providers here we are using credential providers
     CredentialsProvider({
       credentials: {
         email: {
           type: 'email',
         },
-        password: {
-          type: 'password',
-        },
+        password: { type: 'password' },
       },
       async authorize(credentials) {
-        await dbConnect() //connect the database
-        if (credentials == null) return null //if there is no payload return null
+        await dbConnect()
+        if (credentials == null) return null
+
         const user = await UserModel.findOne({ email: credentials.email })
+
         if (user) {
           const isMatch = await bcrypt.compare(
             credentials.password as string,
@@ -27,8 +27,8 @@ export const config = {
           if (isMatch) {
             return user
           }
-          return null
         }
+        return null
       },
     }),
   ],
@@ -38,21 +38,6 @@ export const config = {
     error: '/signin',
   },
   callbacks: {
-    authorized({ request, auth }: any) {
-      //accepts request and aut as parameter
-      const protectedPaths = [
-        //users need to be authentication in these protected paths
-        /\/shipping/,
-        /\/payment/,
-        /\/place-order/,
-        /\/profile/,
-        /\/order\/(.*)/, //we use regular expression to authnticate dyname order ID's
-        /\/admin/,
-      ]
-      const { pathname } = request.nextUrl
-      if (protectedPaths.some((p) => p.test(pathname))) return !!auth
-      return true
-    },
     async jwt({ user, trigger, session, token }: any) {
       if (user) {
         token.user = {
@@ -71,6 +56,7 @@ export const config = {
       }
       return token
     },
+
     session: async ({ session, token }: any) => {
       if (token) {
         session.user = token.user

@@ -1,5 +1,6 @@
 'use client'
 import useCartService from '@/lib/hooks/useCartStore'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 //this page has all the client component of cart page
@@ -9,6 +10,7 @@ import { useEffect, useState } from 'react'
 export default function CartDetails() {
   const router = useRouter()
   const { items, itemsPrice, decrease, increase } = useCartService()
+
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     setMounted(true)
@@ -35,7 +37,7 @@ export default function CartDetails() {
               </thead>
               <tbody>
                 {items.map((item) => (
-                  <tr key={item.slug}>
+                  <tr key={item._id}>
                     <td>
                       <Link
                         href={`/product/${item.slug}`}

@@ -12,16 +12,19 @@ const productSchema = new mongoose.Schema(
     numReviews: { type: Number, required: true, default: 0 },
     countInStock: { type: Number, required: true, default: 0 },
     description: { type: String, required: true },
-    isFeatured: { type: Boolean, required: false },
+    isFeatured: { type: Boolean, default: false },
     banner: String,
   },
   {
     timestamps: true,
   }
 )
+
 const ProductModel =
   mongoose.models.Product || mongoose.model('Product', productSchema)
+
 export default ProductModel
+
 export type Product = {
   _id?: string
   name: string

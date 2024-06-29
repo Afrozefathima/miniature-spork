@@ -51,7 +51,7 @@ export default async function Home() {
       <h2 className="text-2xl py-2">Latest Products</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {latestProducts.map((product) => (
-          <ProductItems key={product.slug} product={convertDocToObj(product)} />
+          <ProductItems key={product._id} product={convertDocToObj(product)} />
         ))}
       </div>
     </>

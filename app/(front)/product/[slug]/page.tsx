@@ -1,5 +1,4 @@
 import AddToCart from '@/components/products/AddToCart'
-import data from '@/lib/data'
 import productService from '@/lib/services/productServices'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -20,12 +19,12 @@ export async function generateMetadata({
   }
 }
 
-export default function ProductDetails({
+export default async function ProductDetails({
   params,
 }: {
   params: { slug: string }
 }) {
-  const product = data.products.find((x) => x.slug === params.slug)
+  const product = await productService.getBySlug(params.slug)
   if (!product) {
     return <div> Product Not found!</div>
   }
@@ -82,7 +81,7 @@ export default function ProductDetails({
                 <div className="card-actions justify-center">
                   <AddToCart
                     item={{
-                      ...product, //only plain objects can be passed to client components
+                      ...convertDocToObj(product), //only plain objects can be passed to client components
                       qty: 0,
                       color: '',
                       size: '',

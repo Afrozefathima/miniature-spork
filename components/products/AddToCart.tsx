@@ -10,7 +10,7 @@ export default function AddToCart({ item }: { item: OrderItem }) {
   const [existItem, setExistItem] = useState<OrderItem | undefined>() //declare existItem state
 
   useEffect(() => {
-    setExistItem(items.find((x) => x.slug === item.slug))
+    setExistItem(items.find((x) => x._id === item._id))
   }, [item, items]) //set exist items based on items array
 
   const addToCartHandler = () => {
