@@ -33,7 +33,7 @@ ChartJS.register(
 )
 
 const Dashboard = () => {
-  const { data: summary, error } = useSWR(`/api/orders/summary`)
+  const { data: summary, error } = useSWR(`/api/admin/orders/summary`)
 
   if (error) return error.message
   if (!summary) return 'Loading...'
@@ -94,7 +94,7 @@ const Dashboard = () => {
     ],
   }
   const usersData = {
-    labels: summary.usersData.map((x: { _id: string }) => x._id), // 2022/01 2022/03
+    labels: summary.usersData.map((x: { _id: string }) => x._id),
     datasets: [
       {
         label: 'Users',
@@ -109,7 +109,7 @@ const Dashboard = () => {
 
   const options = {
     style: 'currency',
-    currency: 'USD', // Example currency code
+    currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }
