@@ -20,5 +20,12 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+export type User = {
+  _id: string
+  name: string
+  email: string
+  isAdmin: boolean
+}
+
 const UserModel = mongoose.models?.User || mongoose.model('User', UserSchema)
 export default UserModel
