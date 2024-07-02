@@ -9,7 +9,7 @@ export const revalidate = 3600 //the cache value will be updated every 1 hour
 
 const getLatest = cache(async () => {
   await dbConnect()
-  const products = await ProductModel.find({}).sort({ _id: -1 }).limit(4).lean() //sort based in id in deccending order so we call the latest product first, limit 4 to get first 4 results only and use lean to convert result to plain javascript
+  const products = await ProductModel.find({}).sort({ _id: -1 }).limit(8).lean() //sort based in id in deccending order so we call the latest product first, limit 4 to get first 4 results only and use lean to convert result to plain javascript
   return products as Product[]
 })
 
