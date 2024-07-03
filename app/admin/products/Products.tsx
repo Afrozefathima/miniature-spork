@@ -60,7 +60,8 @@ export default function Products() {
           onClick={() => createProduct()}
           className="btn btn-primary btn-sm"
         >
-          {isCreating && <span className="loading loading-spinner"></span>}
+          {isCreating && <span className="loading loading-spinner"></span>}{' '}
+          Create
         </button>
       </div>
       <div className="overflow-x-auto">
