@@ -2,7 +2,6 @@
 import { OrderItem } from '@/lib/models/OrderModel'
 import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { useSession } from 'next-auth/react'
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import toast from 'react-hot-toast'

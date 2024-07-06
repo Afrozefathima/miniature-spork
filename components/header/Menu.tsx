@@ -4,6 +4,7 @@ import useLayoutService from '@/lib/hooks/useLayout'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { SearchBox } from './SearchBox'
 
 //this component is to show the number of items in the cart on top of the header
 const Menu = () => {
@@ -26,6 +27,9 @@ const Menu = () => {
 
   return (
     <div>
+      <div className="hidden md:block">
+        <SearchBox />
+      </div>
       <ul className="flex items-stretch">
         <i>
           {mounted && (

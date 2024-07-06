@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/header/header'
+import Header from '@/components/header/Header1'
 import Providers from '@/components/Providers'
 import DrawerButton from '@/components/DrawerButton'
 import Sidebar from '@/components/Sidebar'
