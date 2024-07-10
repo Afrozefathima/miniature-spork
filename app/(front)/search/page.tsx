@@ -154,6 +154,7 @@ export default async function SearchPage({
           <ul>
             {ratings.map((r) => (
               <Link
+                key={r}
                 href={getFilterUrl({ r: `${r}` })}
                 className={`link link-hover ${
                   `${r}` === rating && 'link-primary'
