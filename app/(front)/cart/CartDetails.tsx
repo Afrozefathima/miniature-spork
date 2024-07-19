@@ -1,6 +1,5 @@
 'use client'
 import useCartService from '@/lib/hooks/useCartStore'
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 //this page has all the client component of cart page
